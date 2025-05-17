@@ -9,3 +9,30 @@ p{
     color:gray;
     font-family: fantasy;
 }
+
+ul{
+    list-style-image:url('pointer-icon.png');
+}
+ol{
+    list-style-type: upper-roman;
+}
+
+.highlighted-link{
+    background-color: rgb(28, 133, 98);
+    color: black;
+}
+
+a{
+    font-family: Helvetica, sans-serif;
+    text-decoration: none;
+
+}
+a:hover{
+    background-color: aqua;
+    color           : #ffffff;
+}
+
+#product-list a{
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
