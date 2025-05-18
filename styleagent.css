@@ -17,11 +17,10 @@ ol{
     list-style-type: upper-roman;
 }
 
-.highlighted-link{
-    background-color: rgb(28, 133, 98);
-    color: black;
+#menu a{
+    background-color: beige;
+    
 }
-
 a{
     font-family: Helvetica, sans-serif;
     text-decoration: none;
