@@ -6,9 +6,13 @@
   <title>SentriKasi | IoT & Automation Solutions</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Nova+Square&display=swap" rel="stylesheet">
   <style>
     html {
       scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Nova Square', sans-serif;
     }
     .slide-in {
       transform: translateX(100%);
@@ -19,7 +23,6 @@
       transform: translateX(0);
       opacity: 1;
     }
-    /* Your new slide-in-right animation for hero */
     .animate-slide-in-right {
       transform: translateX(100%);
       opacity: 0;
@@ -31,26 +34,42 @@
         opacity: 1;
       }
     }
-    /* Opacity for solution cards fade-in */
     .opacity-100 {
       opacity: 1 !important;
       transition: opacity 0.7s ease;
     }
-    /* Sidebar transition fix */
     #sidebar {
       transition: transform 0.3s ease-in-out;
+    }
+    .hero-overlay::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(2px);
+      z-index: 1;
     }
   </style>
 </head>
 <body class="bg-gray-950 text-white font-sans">
-  <!-- Responsive Navbar -->
-  <div class="fixed top-0 right-0 z-50 p-4">
+
+  <!-- Sticky Navbar and Branding -->
+  <div class="sticky top-0 z-50 bg-black bg-opacity-80 backdrop-blur-sm flex justify-between items-center p-4">
+    <!-- Company Branding -->
+    <div class="text-left">
+      <h1 class="text-2xl md:text-3xl font-extrabold tracking-widest leading-tight">
+        SENTRI<span class="text-lime-400">KASI</span> <span class="text-sm text-blue-400 ml-2 align-middle inline-block">Smart IoT</span>
+      </h1>
+    </div>
+    <!-- Menu Button -->
     <button id="menu-toggle" class="text-white focus:outline-none" aria-label="Toggle menu">
-      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
       </svg>
     </button>
   </div>
+
+  <!-- Sidebar -->
   <div id="sidebar" class="fixed top-0 right-0 h-full w-64 bg-gray-900 text-white transform translate-x-full z-40">
     <div class="p-6">
       <h2 class="text-xl font-bold mb-4">Menu</h2>
@@ -62,20 +81,9 @@
     </div>
   </div>
 
-  <!-- Updated Hero Section -->
-  <section class="relative bg-black text-white py-20 px-6 text-center">
-    <!-- Company Branding -->
-    <div class="absolute top-6 left-6 text-left">
-      <h1 class="text-3xl md:text-4xl font-extrabold tracking-wide">
-        SENTRIKASI
-      </h1>
-      <p class="text-sm uppercase text-gray-400 tracking-wider mt-1">
-        Smart IoT
-      </p>
-    </div>
-
-    <!-- Tagline & CTA -->
-    <div class="max-w-2xl mx-auto mt-12 md:mt-24 animate-slide-in-right">
+  <!-- Hero Section -->
+<section class="relative text-white py-20 px-6 text-center bg-cover bg-center bg-no-repeat" style="background-image: url('images/background.jpg');">
+    <div class="relative z-20 max-w-2xl mx-auto mt-12 md:mt-24 animate-slide-in-right">
       <h2 class="text-4xl md:text-5xl font-bold mb-4">
         Automate the Grind.
       </h2>
@@ -146,23 +154,19 @@
       sidebar.classList.toggle('translate-x-full');
     });
 
-    // Close sidebar on link click (UX boost)
     document.querySelectorAll('#sidebar a').forEach(link => {
       link.addEventListener('click', () => {
         sidebar.classList.add('translate-x-full');
       });
     });
 
-    // Scroll animation for solution cards
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('opacity-100');
         }
       });
-    }, {
-      threshold: 0.1
-    });
+    }, { threshold: 0.1 });
 
     document.querySelectorAll('[data-animate]').forEach(el => {
       observer.observe(el);
