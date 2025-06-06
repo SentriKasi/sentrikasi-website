@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SentriKasi | IoT & Smart Farming Solutions</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Nova+Square&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sa-red: #de3831;
+      --sa-blue: #002395;
+      --sa-green: #007749;
+      --sa-yellow: #ffb612;
+      --sa-black: #000000;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Nova Square', sans-serif;
+      background-image: 
+        linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.95)),
+        url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><path d="M30 5L55 55H5L30 5z" fill="%23007749" opacity="0.1"/></svg>');
+    }
+    
+    .sa-gradient {
+      background: linear-gradient(135deg, var(--sa-green), var(--sa-blue));
+    }
+    
+    .sa-card {
+      background: linear-gradient(135deg, rgba(0,35,149,0.1), rgba(0,119,73,0.1));
+      border: 1px solid rgba(0,119,73,0.3);
+      backdrop-filter: blur(10px);
+    }
+    
+    .slide-in {
+      transform: translateX(100%);
+      opacity: 0;
+      transition: transform 1s ease, opacity 1s ease;
+    }
+    
+    .slide-in.visible {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    
+    .farming-card {
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(59, 130, 246, 0.1));
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      backdrop-filter: blur(10px);
+    }
+    .stat-counter {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(45deg, #22c55e, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .pulse-green {
+      animation: pulse-green 2s infinite;
+    }
+    @keyframes pulse-green {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+    }
+  </style>
+</head>
+<body class="bg-gray-950 text-white font-sans">
+  <!-- Your existing content without mining sections -->
+  <div id="sidebar" class="fixed top-0 right-0 h-full w-64 bg-gray-900 text-white transform translate-x-full z-40">
+    <div class="p-6">
+      <h2 class="text-xl font-bold mb-4">Menu</h2>
+      <ul class="space-y-4">
+        <li><a href="#precision-farming" class="hover:text-green-400">Precision Farming</a></li>
+        <li><a href="#livestock-tracking" class="hover:text-blue-400">Livestock Tracking</a></li>
+        <li><a href="#water-management" class="hover:text-blue-400">Water Management</a></li>
+        <li><a href="#contact" class="hover:text-blue-400">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const toggle = document.getElementById('menu-toggle');
+    const sidebar = document.getElementById('sidebar');
+    toggle.addEventListener('click', () => {
+      sidebar.classList.toggle('translate-x-full');
+    });
+
+    document.querySelectorAll('#sidebar a').forEach(link => {
+      link.addEventListener('click', () => {
+        sidebar.classList.add('translate-x-full');
+      });
+    });
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('opacity-100');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('[data-animate]').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Counter animation
+    function animateCounters() {
+      const counters = document.querySelectorAll('.stat-counter');
+      counters.forEach(counter => {
+        const target = counter.textContent;
+        let current = 0;
+        const increment = target.includes('%') ? 1 : target.includes('B') ? 0.1 : 1;
+        const timer = setInterval(() => {
+          if (target === '70%' && current < 70) {
+            current += increment;
+            counter.textContent = current + '%';
+          } else if (target === '40%' && current < 40) {
+            current += increment;
+            counter.textContent = current + '%';
+          } else if (target === '35%' && current < 35) {
+            current += increment;
+            counter.textContent = current + '%';
+          } else {
+            clearInterval(timer);
+          }
+        }, 50);
+      });
+    }
+
+    // Trigger counter animation when section is visible
+    const farmingSection = document.getElementById('precision-farming');
+    const farmingObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounters();
+          farmingObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    farmingObserver.observe(farmingSection);
+  </script>
+</body>
+</html>
