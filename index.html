@@ -1,755 +1,661 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SentriKasi - Smart Solutions for South Africa</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#059669',
-            secondary: '#0891b2',
-            accent: '#dc2626',
-            background: '#ffffff',
-            'muted': '#f8fafc'
-          },
-          animation: {
-            'float': 'float 6s ease-in-out infinite',
-            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SentriKasi - Smart Solutions for ZA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-      }
-    }
-  </script>
-  <style>
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
-    }
-    .gradient-text {
-      background: linear-gradient(135deg, #059669 0%, #0891b2 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .hero-bg {
-      background: linear-gradient(135deg, rgba(5, 150, 105, 0.1) 0%, rgba(8, 145, 178, 0.1) 100%);
-    }
-    .section-bg {
-      background: linear-gradient(135deg, rgba(248, 250, 252, 0.8) 0%, rgba(255, 255, 255, 0.9) 100%);
-    }
-  </style>
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e2e8f0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #2d3748;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #059669;
+        }
+
+        .cta-button {
+            background: #059669;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .cta-button:hover {
+            background: #047857;
+            transform: translateY(-1px);
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: #1a1a1a;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+                        url('https://images.unsplash.com/photo-1473968512647-3e447244af8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .hero-button {
+            display: inline-block;
+            background: #059669;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.2s;
+        }
+
+        .hero-button:hover {
+            background: #047857;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(5, 150, 105, 0.3);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background: #f7fafc;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #1a1a1a;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            width: 50px;
+            height: 50px;
+            background: #059669;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .service-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .service-card p {
+            color: #2d3748;
+            line-height: 1.6;
+        }
+
+        /* Why Choose Us Section */
+        .why-choose {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .benefit-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background: #f7fafc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            border: 2px solid #059669;
+        }
+
+        .benefit-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: #059669;
+        }
+
+        .benefit-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .benefit-item p {
+            color: #2d3748;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background: #f7fafc;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #1a1a1a;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #059669;
+        }
+
+        .submit-button {
+            background: #059669;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .submit-button:hover {
+            background: #047857;
+            transform: translateY(-1px);
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .contact-info p {
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .contact-details {
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item svg {
+            width: 20px;
+            height: 20px;
+            fill: #059669;
+            margin-right: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer p {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .footer-links a {
+            color: #f7fafc;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #059669;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
-<body class="bg-white text-gray-900 font-sans">
-  <!-- Modern Sticky Navbar -->
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-16">
-        <!-- Logo -->
-        <div class="flex-shrink-0">
-          <h1 class="text-2xl font-bold tracking-wider">
-            <span class="gradient-text">SENTRI</span><span class="text-accent">KASI</span>
-          </h1>
-        </div>
-        
-        <!-- Desktop Navigation -->
-        <div class="hidden md:flex items-center space-x-8">
-          <a href="#fuel-monitoring" class="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Fuel Monitoring</a>
-          <a href="#livestock-tracking" class="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Livestock Tracking</a>
-          <a href="#water-management" class="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Water Management</a>
-          <a href="#contact" class="px-4 py-2 rounded-full text-sm font-medium bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-all">Contact Us</a>
-        </div>
-
-        <!-- Mobile Menu Button -->
-        <div class="md:hidden">
-          <button id="menu-toggle" class="text-gray-600 hover:text-primary focus:outline-none" aria-label="Toggle menu">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Mobile Menu -->
-  <div id="sidebar" class="fixed top-0 right-0 h-full w-80 bg-white/95 backdrop-blur-xl border-l border-gray-200 shadow-2xl transform translate-x-full z-50 transition-transform duration-300 ease-in-out">
-    <div class="p-8">
-      <div class="flex justify-between items-center mb-8">
-        <h2 class="text-xl font-bold gradient-text">Menu</h2>
-        <button id="close-menu" class="text-gray-500 hover:text-primary">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
-      </div>
-      <ul class="space-y-6">
-        <li><a href="#fuel-monitoring" class="block text-lg font-medium text-gray-600 hover:text-primary transition-colors">Fuel Monitoring</a></li>
-        <li><a href="#livestock-tracking" class="block text-lg font-medium text-gray-600 hover:text-primary transition-colors">Livestock Tracking</a></li>
-        <li><a href="#water-management" class="block text-lg font-medium text-gray-600 hover:text-primary transition-colors">Water Management</a></li>
-        <li><a href="#contact" class="block text-lg font-medium text-gray-600 hover:text-primary transition-colors">Contact</a></li>
-        <li class="pt-6 mt-6 border-t border-gray-200">
-          <p class="text-sm text-gray-500 mb-3">Follow Us</p>
-          <div class="flex space-x-3">
-            <a href="https://linkedin.com/company/sentrikasi" target="_blank" class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-500 transition-all">
-              <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-              </svg>
-            </a>
-            <a href="https://twitter.com/sentrikasi" target="_blank" class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-600 transition-all">
-              <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-              </svg>
-            </a>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Hero Section -->
-  <section class="pt-16 min-h-screen flex items-center hero-bg relative overflow-hidden">
-    <!-- Background Image Placeholder -->
-    <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5">
-      <div class="absolute inset-0 bg-white/60"></div>
-      <!-- Placeholder for big picture background -->
-      <div class="absolute inset-0 flex items-center justify-center opacity-10">
-        <svg class="w-full h-full max-w-4xl" viewBox="0 0 800 600" fill="none">
-          <rect width="800" height="600" fill="url(#gradient)" opacity="0.3"/>
-          <defs>
-            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#059669"/>
-              <stop offset="100%" style="stop-color:#0891b2"/>
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
-    </div>
-    
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="text-center">
-        <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-          <span class="gradient-text">Smart Solutions</span><br>
-          <span class="text-gray-800">for Mzansi</span>
-        </h1>
-        <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-          Empowering South African industries with cutting-edge IoT monitoring solutions. 
-          From mining operations to livestock farming - we've got you covered.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <button class="px-8 py-4 bg-primary text-white rounded-full font-semibold hover:bg-primary/90 transition-all transform hover:scale-105 shadow-lg">
-            Explore Solutions
-          </button>
-          <button class="px-8 py-4 bg-white text-primary border-2 border-primary rounded-full font-semibold hover:bg-primary hover:text-white transition-all transform hover:scale-105 shadow-lg">
-            Get Started
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Floating Animation Elements -->
-    <div class="absolute top-20 left-10 w-20 h-20 bg-primary/10 rounded-full animate-float"></div>
-    <div class="absolute bottom-20 right-10 w-16 h-16 bg-secondary/10 rounded-full animate-float" style="animation-delay: -2s;"></div>
-    <div class="absolute top-1/2 left-20 w-12 h-12 bg-accent/10 rounded-full animate-float" style="animation-delay: -4s;"></div>
-  </section>
-
-  <!-- Fuel Monitoring Section -->
-  <section id="fuel-monitoring" class="py-20 section-bg">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold mb-6">
-          <span class="gradient-text">Fuel Monitoring</span> for Mining
-        </h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-          Advanced fuel tracking solutions designed for South Africa's mining industry. 
-          Stop theft, detect leaks, and optimize your supply chain.
-        </p>
-      </div>
-
-      <div class="grid lg:grid-cols-2 gap-16 items-center">
-        <div>
-          <div class="bg-white rounded-2xl shadow-xl p-8 mb-8">
-            <h3 class="text-2xl font-bold text-accent mb-4">Client Challenge</h3>
-            <p class="text-gray-600 text-lg leading-relaxed">
-              Our client was battling with constant fuel theft, no leak detection & excessive bottlenecks in the supply chain.
-            </p>
-          </div>
-
-          <div class="bg-white rounded-2xl shadow-xl p-8">
-            <h3 class="text-2xl font-bold text-primary mb-6">How We Delivered</h3>
-            <div class="space-y-6">
-              <div class="flex items-start space-x-4">
-                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                  </svg>
-                </div>
-                <div>
-                  <h4 class="font-semibold text-lg mb-2">Real Time Access & Control</h4>
-                  <p class="text-gray-600">Real-time visibility into the mass balance of fuel along the entire value chain.</p>
-                </div>
-              </div>
-
-              <div class="flex items-start space-x-4">
-                <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5c-5.5 0-10-4.5-10-10s4.5-10 10-10 10 4.5 10 10h-5"></path>
-                  </svg>
-                </div>
-                <div>
-                  <h4 class="font-semibold text-lg mb-2">Alarms and Notifications</h4>
-                  <p class="text-gray-600">Alerts for fuel theft and possible leak detection.</p>
-                </div>
-              </div>
-
-              <div class="flex items-start space-x-4">
-                <div class="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                  </svg>
-                </div>
-                <div>
-                  <h4 class="font-semibold text-lg mb-2">Reporting Dashboards</h4>
-                  <p class="text-gray-600">Advanced detailed reporting with overall and detailed reporting capabilities.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="space-y-8">
-          <!-- Placeholder for fuel monitoring image -->
-<div class="bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl h-80 flex items-center justify-center shadow-xl relative overflow-hidden">
-    <!-- Background Image -->
-    <div class="absolute inset-0 bg-cover bg-center opacity-70" 
-         style="background-image: url('Newfolder/IMG-20250606-WA0015.jpg');">
-    </div>
-    
-    <!-- Content overlay -->
-    <div class="text-center relative z-10">
-        <svg class="w-24 h-24 text-gray-600 mx-auto mb-4 drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
-        </svg>
-        <p class="text-black-600 font-medium text-lg drop-shadow-sm"><b>Fuel Monitoring Dashboard</b></p>
-    </div>
-</div>
-
-          <div class="grid grid-cols-2 gap-4">
-            <div class="bg-white rounded-xl p-6 shadow-lg">
-              <h4 class="font-bold text-primary mb-2">Truck Tracking</h4>
-              <p class="text-sm text-gray-600">Monitor fuel in transit and ETA to ISP</p>
-            </div>
-            <div class="bg-white rounded-xl p-6 shadow-lg">
-              <h4 class="font-bold text-secondary mb-2">Smart Flow Meters</h4>
-              <p class="text-sm text-gray-600">Real-time inbound and outbound fuel monitoring</p>
-            </div>
-            <div class="bg-white rounded-xl p-6 shadow-lg">
-              <h4 class="font-bold text-accent mb-2">Source Depot Integration</h4>
-              <p class="text-sm text-gray-600">Track fuel leaving source depot</p>
-            </div>
-            <div class="bg-white rounded-xl p-6 shadow-lg">
-              <h4 class="font-bold text-primary mb-2">POS Integration</h4>
-              <p class="text-sm text-gray-600">Monitor fuel dispensed to customers</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Livestock Tracking Section -->
-  <section id="livestock-tracking" class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold mb-6">
-          <span class="gradient-text">Livestock Tracking</span>
-        </h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-          Elevate your livestock management with our remote tracking and monitoring system. 
-          Keep a constant, vigilant eye on the health, location, and behavior of your animals.
-        </p>
-      </div>
-
-      <div class="grid lg:grid-cols-2 gap-16 items-center">
-        <!-- Placeholder for cow images -->
-<div class="space-y-6">
-  <div class="bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl h-80 flex items-center justify-center shadow-xl relative overflow-hidden">
-    <!-- Background Image -->
-    <div class="absolute inset-0 bg-cover bg-center opacity-80" 
-         style="background-image: url('https://images.unsplash.com/photo-1500595046743-cd271d694d30?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');">
-    </div>
-    
-    <!-- Content overlay -->
-    <div class="text-center relative z-10">
-      <svg class="w-24 h-24 text-green-600 mx-auto mb-4 drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-      </svg>
-      <p class="text-gray-700 font-medium text-lg drop-shadow-sm"><b>Livestock Tracking System</b></p>
-    </div>
-  </div>
-</div>
-          
-          <div class="grid grid-cols-2 gap-4">
-            <div class="bg-gradient-to-br from-green-100 to-green-50 rounded-xl h-32 flex items-center justify-center">
-              <span class="text-green-600 font-medium">Cattle Monitoring</span>
-            </div>
-            <div class="bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl h-32 flex items-center justify-center">
-              <span class="text-blue-600 font-medium">Health Tracking</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="space-y-8">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-              <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                </svg>
-              </div>
-              <h3 class="font-bold text-lg mb-2">Real-time Animal Tracking</h3>
-              <p class="text-gray-600">GPS-enabled tracking for precise location monitoring</p>
-            </div>
-
-            <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-              <div class="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4">
-                <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                </svg>
-              </div>
-              <h3 class="font-bold text-lg mb-2">Health Monitoring Systems</h3>
-              <p class="text-gray-600">Continuous health status monitoring and alerts</p>
-            </div>
-
-            <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-              <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4">
-                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                </svg>
-              </div>
-              <h3 class="font-bold text-lg mb-2">Behavior Pattern Analysis</h3>
-              <p class="text-gray-600">AI-powered behavioral insights and predictions</p>
-            </div>
-
-            <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-              <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5c-5.5 0-10-4.5-10-10s4.5-10 10-10 10 4.5 10 10h-5"></path>
-                </svg>
-              </div>
-              <h3 class="font-bold text-lg mb-2">Alert & Notification System</h3>
-              <p class="text-gray-600">Instant alerts for emergencies and anomalies</p>
-            </div>
-          </div>
-
-          <div class="bg-gradient-to-r from-primary/5 to-secondary/5 rounded-2xl p-8">
-            <h3 class="text-2xl font-bold mb-4">Remote Management Dashboard</h3>
-            <p class="text-gray-600 mb-6">Monitor your entire herd from anywhere with our comprehensive web and mobile dashboard.</p>
-            <ul class="space-y-2 text-gray-600">
-              <li class="flex items-center"><span class="w-2 h-2 bg-primary rounded-full mr-3"></span>Location Services</li>
-              <li class="flex items-center"><span class="w-2 h-2 bg-secondary rounded-full mr-3"></span>Health Status Overview</li>
-              <li class="flex items-center"><span class="w-2 h-2 bg-accent rounded-full mr-3"></span>Historical Data Analytics</li>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="#" class="logo">SENTRIKASI</a>
+            
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#why-choose">Why Choose Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact" class="cta-button">Get Started</a></li>
             </ul>
-          </div>
+            
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Smart Solutions for ZA</h1>
+            <p>Advanced IoT monitoring solutions for South African industries. Trusted by mining operations, livestock farms, and industrial facilities across the country.</p>
+            <a href="#contact" class="hero-button">Explore Solutions</a>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Water Management Section -->
-  <section id="water-management" class="py-20 section-bg">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold mb-6">
-          <span class="gradient-text">Water Management</span> Systems
-        </h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-          Comprehensive water management solutions for agricultural operations, housing developments, 
-          soccer fields, and schools. Monitor usage, detect leaks, and optimize water efficiency.
-        </p>
-      </div>
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">Our Solutions</h2>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 0 0-3.7-3.7 47.48 47.48 0 0 0-7.324 0 4.006 4.006 0 0 0-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 0 0 3.7 3.7 47.48 47.48 0 0 0 7.324 0 4.006 4.006 0 0 0 3.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3"/>
+                        </svg>
+                    </div>
+                    <h3>Fuel Monitoring</h3>
+                    <p>Real-time fuel level monitoring and theft prevention systems for mining operations, construction sites, and industrial facilities. Advanced sensors provide accurate data and instant alerts.</p>
+                </div>
 
-      <div class="grid lg:grid-cols-2 gap-16 items-start">
-        <div class="space-y-8">
-          <div class="bg-white rounded-2xl shadow-xl p-8">
-            <h3 class="text-2xl font-bold text-secondary mb-6">Agricultural Water Management</h3>
-            <div class="space-y-4">
-              <div class="flex items-center space-x-3">
-                <div class="w-2 h-2 bg-secondary rounded-full"></div>
-                <span class="text-gray-700">Irrigation monitoring</span>
-              </div>
-              <div class="flex items-center space-x-3">
-                <div class="w-2 h-2 bg-secondary rounded-full"></div>
-                <span class="text-gray-700">Water quality control</span>
-              </div>
-              <div class="flex items-center space-x-3">
-                <div class="w-2 h-2 bg-secondary rounded-full"></div>
-                <span class="text-gray-700">Distribution optimization</span>
-              </div>
-              <div class="flex items-center space-x-3">
-                <div class="w-2 h-2 bg-secondary rounded-full"></div>
-                <span class="text-gray-700">Usage analytics</span>
-              </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                            <path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/>
+                        </svg>
+                    </div>
+                    <h3>Livestock Tracking</h3>
+                    <p>GPS-enabled livestock monitoring with health tracking, behavior analysis, and automated alerts. Keep your animals safe and optimize farming operations with precise location data.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                        </svg>
+                    </div>
+                    <h3>Drone Services</h3>
+                    <p>Autonomous drone solutions for aerial monitoring, agricultural surveillance, infrastructure inspections, and security patrols. Fully automated operations with AI-powered analytics.</p>
+                </div>
             </div>
-          </div>
-
-          <div class="bg-white rounded-2xl shadow-xl p-8">
-            <h3 class="text-2xl font-bold text-primary mb-6">Sports & Recreation</h3>
-            <div class="space-y-4">
-              <div class="flex items-center space-x-3">
-                <div class="w-2 h-2 bg-primary rounded-full"></div>
-                <span class="text-gray-700">Soccer field irrigation</span>
-              </div>
-              <div class="flex items-center space-x-3">
-                <div class="w-2 h-2 bg-primary rounded-full"></div>
-                <span class="text-gray-700">Moisture level monitoring</span>
-              </div>
-              <div class="flex items-center space-x-3">
-                <div class="w-2 h-2 bg-primary rounded-full"></div>
-                <span class="text-gray-700">Automated sprinkler control</span>
-              </div>
-              <div class="flex items-center space-x-3">
-                <div class="w-2 h-2 bg-primary rounded-full"></div>
-                <span class="text-gray-700">Weather-based adjustments</span>
-              </div>
-            </div>
-          </div>
         </div>
+    </section>
 
-        <div class="space-y-6">
-          <!-- Placeholder for water management images -->
-<div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl h-80 flex items-center justify-center shadow-xl relative overflow-hidden">
-  <!-- Background Image -->
-  <div class="absolute inset-0 bg-cover bg-center opacity-100" 
-       style="background-image: url('Newfolder/WhatsApp\ Image\ 2025-06-06\ at\ 14.23.26_514390cb.jpg');">
-  </div>
-  
-  <!-- Content overlay -->
-  <div class="text-center relative z-10">
-    <svg class="w-24 h-24 text-blue-600 mx-auto mb-11 drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
-    </svg>
-    <p class="text-black-700 font-medium text-lg drop-shadow-sm"><b>Water Management System</b></p>
-  </div>
-</div>
-          
-          <div class="grid grid-cols-2 gap-4">
-            <div class="bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl h-32 flex items-center justify-center">
-              <span class="text-blue-600 font-medium">Smart Irrigation</span>
-            </div>
-            <div class="bg-gradient-to-br from-cyan-100 to-cyan-50 rounded-xl h-32 flex items-center justify-center">
-              <span class="text-cyan-600 font-medium">Water Quality</span>
-            </div>
-            <div class="bg-gradient-to-br from-teal-100 to-teal-50 rounded-xl h-32 flex items-center justify-center">
-              <span class="text-teal-600 font-medium">Leak Detection</span>
-            </div>
-            <div class="bg-gradient-to-br from-emerald-100 to-emerald-50 rounded-xl h-32 flex items-center justify-center">
-              <span class="text-emerald-600 font-medium">Usage Analytics</span>
-            </div>
-          </div>
+    <!-- Why Choose Us Section -->
+    <section class="why-choose" id="why-choose">
+        <div class="container">
+            <h2 class="section-title">Why Choose SentriKasi</h2>
+            
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"/>
+                        </svg>
+                    </div>
+                    <h4>Proven Results</h4>
+                    <p>85% reduction in fuel theft, trusted by major SA industries</p>
+                </div>
 
-          <div class="bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl p-8 text-white">
-            <h3 class="text-2xl font-bold mb-4">Smart Water Solutions</h3>
-            <p class="mb-6 opacity-90">From townships to commercial farms, our water management systems ensure efficient usage and conservation across South Africa.</p>
-            <div class="grid grid-cols-2 gap-4 text-sm">
-              <div class="bg-white/20 rounded-lg p-3">
-                <div class="font-semibold">Schools & Communities</div>
-                <div class="opacity-80">Automated monitoring</div>
-              </div>
-              <div class="bg-white/20 rounded-lg p-3">
-                <div class="font-semibold">Sports Facilities</div>
-                <div class="opacity-80">Field irrigation control</div>
-              </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h4>24/7 Monitoring</h4>
+                    <p>Continuous surveillance with instant alerts and notifications</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"/>
+                        </svg>
+                    </div>
+                    <h4>Mobile Access</h4>
+                    <p>Monitor your operations from anywhere with our mobile app</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/>
+                        </svg>
+                    </div>
+                    <h4>Advanced Technology</h4>
+                    <p>Cutting-edge IoT sensors and AI-powered analytics</p>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Business Impact Section -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold mb-6">
-          <span class="gradient-text">Business Impact</span>
-        </h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-          Transforming South African businesses with measurable results and sustainable growth
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="text-center">
-          <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-            <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
-            </svg>
-          </div>
-          <h3 class="text-3xl font-bold text-primary mb-2">85%</h3>
-          <p class="text-gray-600 font-medium">Reduction in Fuel Theft</p>
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get Started Today</h2>
+            
+            <div class="contact-content">
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" name="company" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service">Service Interest</label>
+                            <select id="service" name="service" style="width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 5px;">
+                                <option value="">Select a service</option>
+                                <option value="fuel">Fuel Monitoring</option>
+                                <option value="livestock">Livestock Tracking</option>
+                                <option value="drone">Drone Services</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="4" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-button">Send Message</button>
+                    </form>
+                </div>
+                
+                <div class="contact-info">
+                    <h3>Ready to Transform Your Operations?</h3>
+                    <p>Get in touch with our team to discuss how SentriKasi can help optimize your business operations with advanced IoT monitoring solutions.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M21.384,17.752l-2.319-2.319c-0.534-0.534-1.219-0.828-1.929-0.828c-0.71,0-1.395,0.294-1.929,0.828l-1.04,1.04 c-0.303-0.174-0.622-0.367-0.956-0.587c-1.059-0.698-2.239-1.478-3.659-2.898c-1.42-1.42-2.2-2.6-2.898-3.659 c-0.22-0.334-0.413-0.653-0.587-0.956l1.04-1.04c0.534-0.534,0.828-1.219,0.828-1.929c0-0.71-0.294-1.395-0.828-1.929 L6.788,2.155c-0.534-0.534-1.219-0.828-1.929-0.828c-0.71,0-1.395,0.294-1.929,0.828L1.889,3.195 C0.953,4.131,0.408,5.386,0.408,6.694c0,2.761,1.15,5.654,3.639,8.143c2.489,2.489,5.382,3.639,8.143,3.639 c1.308,0,2.563-0.545,3.499-1.481l1.04-1.04c0.534-0.534,0.828-1.219,0.828-1.929c0-0.71-0.294-1.395-0.828-1.929 L21.384,17.752z"/>
+                            </svg>
+                            <span>+27 60 683 3984</span>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"/>
+                                <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"/>
+                            </svg>
+                            <span>giftmxolisimasango@gmail.com</span>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                <path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
+                            </svg>
+                            <span>Emalahleni, South Africa</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="text-center">
-          <div class="w-20 h-20 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-            <svg class="w-10 h-10 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
-            </svg>
-          </div>
-          <h3 class="text-3xl font-bold text-secondary mb-2">R2.5M</h3>
-          <p class="text-gray-600 font-medium">Annual Savings Average</p>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 SentriKasi. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Support</a>
+            </div>
         </div>
+    </footer>
 
-        <div class="text-center">
-          <div class="w-20 h-20 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6">
-            <svg class="w-10 h-10 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </div>
-          <h3 class="text-3xl font-bold text-accent mb-2">99.2%</h3>
-          <p class="text-gray-600 font-medium">System Uptime</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    <script>
+        // Simple mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
 
-  <!-- Contact Section -->
-  <section id="contact" class="py-20 bg-gradient-to-br from-primary/5 to-secondary/5">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold mb-6">
-          Ready to <span class="gradient-text">Transform</span> Your Business?
-        </h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-          Join leading South African companies who trust SentriKasi for their monitoring solutions
-        </p>
-      </div>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
 
-      <div class="grid lg:grid-cols-2 gap-16 items-center">
-        <div class="bg-white rounded-2xl shadow-2xl p-8">
-          <h3 class="text-2xl font-bold mb-6">Get Started Today</h3>
-          <form class="space-y-6">
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
-              <input type="text" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="Your full name">
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Company</label>
-              <input type="text" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="Your company name">
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-              <input type="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="your.email@company.co.za">
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-              <input type="tel" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="+27 XX XXX XXXX">
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Solution Interest</label>
-              <select class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
-                <option>Fuel Monitoring for Mining</option>
-                <option>Livestock Tracking</option>
-                <option>Water Management</option>
-                <option>Multiple Solutions</option>
-              </select>
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
-              <textarea rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="Tell us about your specific needs..."></textarea>
-            </div>
-            <button type="submit" class="w-full bg-primary text-white py-4 px-6 rounded-lg font-semibold hover:bg-primary/90 transition-all transform hover:scale-105 shadow-lg">
-              Request Consultation
-            </button>
-          </form>
-        </div>
-
-        <div class="space-y-8">
-          <div class="text-center lg:text-left">
-            <h3 class="text-3xl font-bold mb-4">Why Choose SentriKasi?</h3>
-            <p class="text-lg text-gray-600 mb-8">
-              We understand the unique challenges facing South African businesses. 
-              Our solutions are designed locally, tested extensively, and backed by world-class support.
-            </p>
-          </div>
-
-          <div class="space-y-6">
-            <div class="flex items-start space-x-4">
-              <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                </svg>
-              </div>
-              <div>
-                <h4 class="font-bold text-lg mb-2">Local Expertise</h4>
-                <p class="text-gray-600">Based in South Africa, we understand local challenges and regulations</p>
-              </div>
-            </div>
-
-            <div class="flex items-start space-x-4">
-              <div class="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                </svg>
-              </div>
-              <div>
-                <h4 class="font-bold text-lg mb-2">Rapid Deployment</h4>
-                <p class="text-gray-600">Quick installation and setup with minimal disruption to operations</p>
-              </div>
-            </div>
-
-            <div class="flex items-start space-x-4">
-              <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                </svg>
-              </div>
-              <div>
-                <h4 class="font-bold text-lg mb-2">24/7 Support</h4>
-                <p class="text-gray-600">Round-the-clock technical support and system monitoring</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 text-white">
-            <h4 class="text-xl font-bold mb-4">Ready to Get Started?</h4>
-            <p class="mb-6 opacity-90">Schedule a free consultation and see how SentriKasi can transform your operations.</p>
-            <div class="flex flex-col sm:flex-row gap-4">
-              <a href="tel:+27123456789" class="flex items-center justify-center px-6 py-3 bg-white/20 rounded-lg hover:bg-white/30 transition-all">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                </svg>
-                Call Now
-              </a>
-              <a href="mailto:giftmxolisimasango@gmail.com" class="flex items-center justify-center px-6 py-3 bg-white/20 rounded-lg hover:bg-white/30 transition-all">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                </svg>
-                Email Us
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-white py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid md:grid-cols-4 gap-8">
-        <div>
-          <h3 class="text-2xl font-bold mb-4">
-            <span class="gradient-text">SENTRI</span><span class="text-red-500">KASI</span>
-          </h3>
-          <p class="text-gray-400 mb-6">
-            Empowering South African industries with smart IoT monitoring solutions.
-          </p>
-          <div class="flex space-x-4">
-            <a href="https://linkedin.com/company/sentrikasi" target="_blank" class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-500 transition-all">
-              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-              </svg>
-            </a>
-            <a href="https://twitter.com/sentrikasi" target="_blank" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-600 transition-all">
-              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-              </svg>
-            </a>
-          </div>
-        </div>
-
-        <div>
-          <h4 class="font-bold text-lg mb-4">Solutions</h4>
-          <ul class="space-y-2 text-gray-400">
-            <li><a href="#fuel-monitoring" class="hover:text-white transition-colors">Fuel Monitoring</a></li>
-            <li><a href="#livestock-tracking" class="hover:text-white transition-colors">Livestock Tracking</a></li>
-            <li><a href="#water-management" class="hover:text-white transition-colors">Water Management</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="font-bold text-lg mb-4">Industries</h4>
-          <ul class="space-y-2 text-gray-400">
-            <li><a href="#" class="hover:text-white transition-colors">Mining</a></li>
-            <li><a href="#" class="hover:text-white transition-colors">Agriculture</a></li>
-            <li><a href="#" class="hover:text-white transition-colors">Sports & Recreation</a></li>
-            <li><a href="#" class="hover:text-white transition-colors">Education</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="font-bold text-lg mb-4">Contact Info</h4>
-          <ul class="space-y-2 text-gray-400">
-            <li>📍 Emalahleni, South Africa</li>
-            <li>📞 +27 60 683 3984</li>
-            <li>✉️ giftmxolisimasango@gmail.com</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-        <p>&copy; 2024 SentriKasi. All rights reserved. Made with ❤️ in South Africa.</p>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // Mobile menu toggle
-    const menuToggle = document.getElementById('menu-toggle');
-    const sidebar = document.getElementById('sidebar');
-    const closeMenu = document.getElementById('close-menu');
-
-    menuToggle.addEventListener('click', () => {
-      sidebar.classList.remove('translate-x-full');
-    });
-
-    closeMenu.addEventListener('click', () => {
-      sidebar.classList.add('translate-x-full');
-    });
-
-    // Close sidebar when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
-        sidebar.classList.add('translate-x-full');
-      }
-    });
-
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-          // Close mobile menu after clicking
-          sidebar.classList.add('translate-x-full');
-        }
-      });
-    });
-
-    // Add scroll effect to navbar
-    window.addEventListener('scroll', () => {
-      const nav = document.querySelector('nav');
-      if (window.scrollY > 50) {
-        nav.classList.add('shadow-lg');
-      } else {
-        nav.classList.remove('shadow-lg');
-      }
-    });
-
-    // Form submission handling
-    document.querySelector('form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('Thank you for your interest! We will contact you soon.');
-    });
-  </script>
+        // Form submission handler
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+    </script>
 </body>
 </html>
