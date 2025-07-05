@@ -54,6 +54,15 @@
             list-style: none;
             gap: 2rem;
             align-items: center;
+            position: static;
+            flex-direction: row;
+            background: none;
+            box-shadow: none;
+            border-bottom: none;
+            opacity: 1;
+            transform: none;
+            pointer-events: auto;
+            transition: none;
         }
 
         .nav-links a {
@@ -388,36 +397,63 @@
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
+                position: absolute;
+                top: 70px;
+                left: 50%;
+                transform: translate(-50%, -20px);
+                width: 90vw;
+                max-width: 350px;
+                flex-direction: column;
+                background: #fff;
+                box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+                border-radius: 12px;
+                border-bottom: none;
+                z-index: 999;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.3s, transform 0.3s;
             }
-
+            .nav-links.show {
+                display: flex;
+                opacity: 1;
+                transform: translate(-50%, 0);
+                pointer-events: auto;
+            }
+            .nav-links li {
+                width: 100%;
+                border-bottom: 1px solid #f1f1f1;
+            }
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+            .nav-links a, .nav-links .cta-button {
+                display: block;
+                width: 100%;
+                padding: 1rem 2rem;
+                color: #1a1a1a;
+                background: none;
+                border-radius: 0;
+                text-align: left;
+            }
+            .nav-links .cta-button {
+                background: #059669;
+                color: #fff;
+                margin: 0.5rem 2rem;
+                border-radius: 25px;
+                text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 48px;
+            }
             .mobile-menu {
                 display: flex;
+                z-index: 1001;
             }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .benefits-grid {
-                grid-template-columns: 1fr;
-            }
+        }
+        @keyframes dropdownMenu {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -631,9 +667,29 @@
         // Simple mobile menu toggle
         const mobileMenu = document.querySelector('.mobile-menu');
         const navLinks = document.querySelector('.nav-links');
+        const navLinksAll = document.querySelectorAll('.nav-links a');
+        
+        function handleResize() {
+            if (window.innerWidth > 768) {
+                navLinks.classList.remove('show');
+                navLinks.style.display = 'flex';
+            } else {
+                navLinks.style.display = '';
+            }
+        }
+        window.addEventListener('resize', handleResize);
+        handleResize();
         
         mobileMenu.addEventListener('click', () => {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.classList.toggle('show');
+        });
+        // Hide menu on link click (mobile only)
+        navLinksAll.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navLinks.classList.remove('show');
+                }
+            });
         });
 
         // Smooth scrolling for navigation links
